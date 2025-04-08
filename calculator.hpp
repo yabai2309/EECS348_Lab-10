@@ -3,6 +3,6 @@
 
 #include <string>
 
-double parse_expression(const std::string &expression);
+double parse_number(const std::string &expression);
 
 #endif // __CALCULATOR_HPP
