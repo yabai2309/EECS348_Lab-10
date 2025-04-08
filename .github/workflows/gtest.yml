@@ -1,0 +1,19 @@
+name: Test
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build googletest
+        run: |
+          cmake -S . -B build -DBUILD_GMOCK=OFF
+          cmake --build build
+      - name: Run googletest
+        run: |
+          export GTEST_COLOR=1
+          cd build/tests && ctest --output-on-failure
